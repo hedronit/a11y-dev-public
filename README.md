@@ -42,8 +42,8 @@ Gli esempi sono spesso in coppia **brutto / buono**: l'obiettivo è confrontare 
 
 ## Argomenti
 
-- **Dialog** — gestione del focus, `role="dialog"`, `aria-modal`, `aria-labelledby`
-- **Tabindex** — ordine di navigazione da tastiera, uso corretto di `tabindex`
+- **Dialog**: gestione del focus, `role="dialog"`, `aria-modal`, `aria-labelledby`
+- **Tabindex**: ordine di navigazione da tastiera, uso corretto di `tabindex`
 
 *(La lista si aggiornerà con i nuovi moduli del corso)*
 
@@ -57,4 +57,4 @@ Il repo è pubblico a scopo didattico. Se trovi un errore o vuoi suggerire un mi
 
 ## Licenza
 
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — puoi usare e adattare i materiali citando la fonte.
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): puoi usare e adattare i materiali citando la fonte.
