@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Problemi con tabindex positivo</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      line-height: 1.5;
+    }
+    * {
+  box-sizing: border-box;
+}
+
+button,
+input,
+a {
+  display: block;
+  margin: 12px 0;
+  padding: 10px;
+  width: 100%;
+}
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 900px;
+    }
+
+    section {
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    button,
+    input,
+    a {
+      display: block;
+      margin: 12px 0;
+      padding: 10px;
+      width: 100%;
+    }
+
+    :focus {
+      outline: 4px solid orange;
+      outline-offset: 2px;
+    }
+
+    .warning {
+      background: #fff3cd;
+      border: 1px solid #ffcc00;
+      padding: 12px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Perché tabindex > 0 è problematico</h1>
+
+
+  <div class="layout">
+
+    <section>
+
+      <input type="text" placeholder="Nome">
+
+      <input type="email" placeholder="Email">
+
+      <input type="text" placeholder="Città">
+
+      <!-- PROBLEMA -->
+      <button tabindex="1">
+        Bottone con tabindex="1"
+      </button>
+
+      <a href="#">
+        Link normale
+      </a>
+    </section>
+
+    <section>
+
+      <button>
+        Bottone normale A
+      </button>
+
+      <button tabindex="2">
+        Bottone con tabindex="2"
+      </button>
+
+      <button>
+        Bottone normale B
+      </button>
+
+      <input type="text" placeholder="Telefono">
+    </section>
+
+  </div>
+
+
+</body>
+</html>

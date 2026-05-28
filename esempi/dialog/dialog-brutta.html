@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dialog NON accessibile</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    padding: 2rem;
+  }
+
+  .modal {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid #ccc;
+    padding: 1.5rem;
+    width: 400px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+  }
+</style>
+</head>
+
+<body>
+
+<h1>Pagina principale</h1>
+
+<button id="openModal">
+  Apri modale
+</button>
+
+<p>
+  Questo contenuto NON dovrebbe essere raggiungibile
+  quando la modale è aperta.
+</p>
+
+<a href="#">
+  Link dietro la modale
+</a>
+
+<div id="overlay" class="overlay hidden"></div>
+
+<div
+  id="modal"
+  class="modal hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+>
+
+  <h2 id="modalTitle">
+    Dialog problematico
+  </h2>
+
+  <p>
+    Questa modale sembra accessibile ma non lo è.
+  </p>
+
+  <button>
+    Conferma
+  </button>
+
+  <button id="closeModal">
+    Chiudi
+  </button>
+
+</div>
+
+<script>
+  const modal = document.getElementById('modal');
+  const overlay = document.getElementById('overlay');
+
+  document.getElementById('openModal')
+    .addEventListener('click', () => {
+
+      modal.classList.remove('hidden');
+      overlay.classList.remove('hidden');
+
+      // Focus iniziale assente
+      // Nessun focus trap
+      // Nessun inert
+    });
+
+  document.getElementById('closeModal')
+    .addEventListener('click', () => {
+
+      modal.classList.add('hidden');
+      overlay.classList.add('hidden');
+    });
+</script>
+
+</body>
+</html>

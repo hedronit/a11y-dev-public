@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AccessiBlog: Accessibilità digitale per tutti</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Stile personalizzato per i link di navigazione */
+    .nav-links a:focus { outline: none; }
+
+    /* Focus visibile su tutti gli altri elementi interattivi */
+    :focus-visible {
+      outline: 3px solid #e8523e;
+      outline-offset: 3px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #1a1a1a;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 2rem;
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #cccccc;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover { color: #ffffff; }
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+    .search-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      display: flex;
+      align-items: center;
+    }
+    .search-btn svg { width: 22px; height: 22px; }
+    .search-btn:hover svg { opacity: 0.8; }
+
+    /* HERO */
+    .hero {
+      background: #f5f5f5;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .hero-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #e8523e;
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+      line-height: 1.25;
+      max-width: 680px;
+      margin: 0 auto 1rem;
+    }
+    .hero-meta { font-size: 0.875rem; color: #666; }
+
+    /* LAYOUT */
+    .page-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 4rem;
+    }
+
+    /* ARTICLE */
+    .article-content h3 {
+      font-size: 1.3rem;
+      margin: 2.5rem 0 0.75rem;
+      color: #1a1a1a;
+    }
+    .article-content p { margin-bottom: 1.25rem; color: #333; }
+    .article-content a { color: #e8523e; }
+
+    /* TAGS */
+    .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .tag {
+      background: #eee;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 2rem; }
+    .sidebar-box {
+      background: #f9f9f9;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .sidebar-box h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #555;
+    }
+    .sidebar-box ul { list-style: none; }
+    .sidebar-box ul li { margin-bottom: 0.6rem; }
+    .sidebar-box ul li a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .sidebar-box ul li a:hover { color: #e8523e; }
+
+    /* NEWSLETTER */
+    .newsletter {
+      background: #1a1a1a;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .newsletter h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #cccccc;
+    }
+    .newsletter p { font-size: 0.9rem; color: #aaa; margin-bottom: 1rem; }
+    .newsletter-input {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background: #2a2a2a;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+    .newsletter-input::placeholder { color: #777; }
+    .cta-btn {
+      display: block;
+      width: 100%;
+      background: #e8523e;
+      color: #ffffff;
+      padding: 0.7rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-align: center;
+      cursor: pointer;
+    }
+    .cta-btn:hover { background: #c7402d; }
+
+    /* COMMENTS */
+    .comments-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid #f0f0f0;
+    }
+    .comments-section h3 { font-size: 1.2rem; margin-bottom: 1.5rem; }
+    .comment-form label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      margin-top: 1rem;
+    }
+    .comment-form input,
+    .comment-form textarea {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    .comment-form textarea { height: 110px; resize: vertical; }
+    .submit-btn {
+      margin-top: 1.25rem;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* BACK TO TOP */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    footer {
+      background: #f5f5f5;
+      border-top: 1px solid #e5e5e5;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-header">
+    <a href="#" class="logo">AccessiBlog</a>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Articoli</a>
+      <a href="#">Guide</a>
+      <a href="#">Chi siamo</a>
+      <a href="#">Contatti</a>
+    </div>
+    <div class="header-actions">
+      <button class="search-btn" aria-label="Cerca">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"
+             stroke="#cccccc" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="6"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <p class="hero-label">Accessibilità & Inclusione</p>
+    <h1>Perché l'accessibilità digitale riguarda tutti noi</h1>
+  </div>
+
+  <div class="page-body">
+
+    <article class="article-content">
+
+      <div class="tags">
+        <span class="tag">Accessibilità</span>
+        <span class="tag">UX</span>
+        <span class="tag">Inclusione</span>
+        <span class="tag">WCAG</span>
+      </div>
+
+      <p>Quando parliamo di accessibilità digitale, la prima immagine che viene in mente è spesso quella di una persona con una disabilità visiva che usa uno screen reader. Ma ridurre l'accessibilità a questo scenario è come pensare che i marciapiedi ribassati servano solo alle persone in sedia a rotelle, quando in realtà li usano ogni giorno persone con passeggini, ciclisti, anziani con bastone.</p>
+
+      <p>L'accessibilità digitale riguarda chiunque si trovi in condizioni che rendono difficile l'uso standard di un'interfaccia: una disabilità permanente, certo, ma anche una situazione temporanea (un braccio ingessato), contestuale (usare il telefono in pieno sole), o semplicemente l'invecchiamento.</p>
+
+      <h3>Il mito della nicchia</h3>
+
+      <p>Secondo l'OMS, oltre un miliardo di persone nel mondo (circa il 15% della popolazione) convive con una qualche forma di disabilità. In Europa, la cifra si avvicina a 87 milioni. Eppure quando si parla di accessibilità nei team di prodotto, la reazione più comune è ancora: <em>"è una feature per una nicchia"</em>.</p>
+
+      <p>Questo errore di prospettiva ha un costo reale: prodotti esclusi dai bandi pubblici, esposizione a contenziosi legali, e una quota di mercato sistematicamente ignorata. In Italia, la <a href="#">Legge Stanca</a> e il recente recepimento dell'European Accessibility Act impongono obblighi precisi, non raccomandazioni.</p>
+
+      <h3>Le barriere che non si vedono</h3>
+
+      <p>Un contrasto cromatico insufficiente non è un problema solo per chi è ipovedente: chiunque legga all'aperto sotto il sole ne soffre. Un'interfaccia usabile solo con il mouse esclude chi ha tremori alle mani, chi usa uno switch, chi semplicemente preferisce la tastiera per velocità. Un video senza sottotitoli è inaccessibile non solo per i sordi, ma per chi guarda in un luogo rumoroso o silenzioso.</p>
+
+      <p>Le barriere digitali non sono mai invisibili a chi le incontra ogni giorno. Sono invisibili solo a chi non le ha mai cercate.</p>
+
+      <h3>Da dove iniziare</h3>
+
+      <p>Il punto di partenza è sorprendentemente semplice: testa la tua interfaccia senza il mouse. Premi <kbd>Tab</kbd>, spostati tra gli elementi, attiva i controlli con <kbd>Invio</kbd> e <kbd>Spazio</kbd>. Se ti perdi, se non sai dove sei nella pagina, hai trovato il tuo primo bug di accessibilità.</p>
+
+      <p>Poi apri il pannello Accessibility di Chrome DevTools e guarda l'accessibility tree. Ogni elemento interattivo dovrebbe avere un nome, un ruolo e, dove necessario, uno stato. Se qualcosa manca, le tecnologie assistive non possono comunicarlo a chi le usa.</p>
+
+
+      <div class="comments-section">
+        <h3>Lascia un commento</h3>
+        <form class="comment-form" action="#">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" autocomplete="name">
+
+          <input type="email" id="email" name="email"
+                 autocomplete="email" placeholder="Email">
+
+          <label for="commento">Commento</label>
+          <textarea id="commento" name="commento"></textarea>
+
+          <button type="submit" class="submit-btn">Invia commento</button>
+        </form>
+      </div>
+
+    </article>
+
+    <aside class="sidebar">
+
+      <div class="sidebar-box">
+        <h2>Articoli correlati</h2>
+        <ul>
+          <li><a href="#">Come testare l'accessibilità senza strumenti</a></li>
+          <li><a href="#">WCAG 2.2: cosa cambia rispetto al 2.1</a></li>
+          <li><a href="#">Il ruolo dell'HTML semantico</a></li>
+          <li><a href="#">Tastiera vs mouse: perché conta</a></li>
+        </ul>
+      </div>
+
+      <div class="newsletter">
+        <h2>Newsletter</h2>
+        <p>Un articolo a settimana sull'accessibilità digitale, direttamente nella tua inbox.</p>
+        <input
+          type="email"
+          class="newsletter-input"
+          placeholder="La tua email"
+        >
+        <div class="cta-btn" onclick="alert('Grazie per l\'iscrizione!')">
+          Iscriviti
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <button
+    class="back-to-top"
+    tabindex="1"
+    onclick="window.scrollTo({top:0, behavior:'smooth'})"
+    aria-label="Torna in cima alla pagina"
+  >↑</button>
+
+  <footer>
+    <p>© 2026 AccessiBlog - Tutti i diritti riservati</p>
+  </footer>
+
+</body>
+</html>
