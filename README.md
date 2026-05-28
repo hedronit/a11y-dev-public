@@ -1,6 +1,6 @@
 # a11y-dev-public
 
-Materiali didattici per il corso di **sviluppo web accessibile**.  
+Materiali didattici per il corso di **sviluppo accessibile**.  
 Il repo raccoglie esempi pratici ed esercitazioni organizzati per argomento.
 
 ---
